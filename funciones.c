@@ -1,16 +1,29 @@
 #include "definiciones.h"
+/*
+ * En este archivo se encuentran todas las funciones que se utilizan para el correcto funcionamiento
+   del programa
+ * @author: Valentina Ligueño
+ * @version: 31/12/2018
+ */
 
+
+/*
+*Funcion que se encarga de leer el archivo de entrada, e inmediatamente generar la solución buscada
+*@param entrada: Es el nombre del archivo de entrada del cual se extraerán los datos
+*@param salida: Es el nombre del archivo de salida, en el cuál se escribirán las combinaciones encontradas para cada caso
+*No posee salidas, ya que escribe de inmediato la solución a medida que la encuentra
+*/
 void goloso(char const *entrada,char const *salida)		
 {											
 	FILE *archivo_entrada, *archivo_salida;		
-	int i,numero_barriles,costo_tramo,*lista_barriles,barril1,barril2,indice,caso;
+	int i,numero_casos,numero_barriles,costo_tramo,*lista_barriles,barril1,barril2,indice,caso;
 	char buffer[100],*barril;
 
 	archivo_entrada = fopen(entrada,"r");
 	archivo_salida = fopen(salida,"w");
 
 	fscanf(archivo_entrada," %119[^\n]",buffer);
-	NUMERO_CASOS = atoi(buffer);
+	numero_casos = atoi(buffer);
 	fgetc(archivo_entrada);
 	caso = 1;
 
@@ -78,6 +91,14 @@ void goloso(char const *entrada,char const *salida)
 	fclose(archivo_entrada);
 	fclose(archivo_salida);
 }
+
+
+/*
+*Funcion que ordena una lista de enteros en orden ascendente
+*@param lista: Lista a ordenar
+*@param largo: Cantidad de elementos que posee la lista a ordenar
+*No posee salidas, ya que recibe la lista como puntero se hacen directamente los cambios dentro de esta 
+*/
 void ordenar_lista(int* lista,int largo){
 	for (int i = 0; i < largo-1; ++i)
 	{
@@ -91,6 +112,14 @@ void ordenar_lista(int* lista,int largo){
 	}
 }
 
+
+/*
+*Funcion que elimina un elemento de una lista de enteros
+*@param lista: Lista a ordenar
+*@param largo: Cantidad de elementos que posee la lista a ordenar
+*@param indice: Posicion en la que se encuentra el elemento a eliminar de la lista
+*No posee salidas, ya que recibe la lista como puntero se hacen directamente los cambios dentro de esta 
+*/
 int remover_elemento(int* lista,int largo,int indice)
 {
 	for (int i = 0; i < largo; ++i)
@@ -102,6 +131,14 @@ int remover_elemento(int* lista,int largo,int indice)
 	return largo-1;
 }
 
+/*
+*Funcion que muestra por pantalla un caso del archivo de entrada y las combinaciones de barriles que cumplen
+ las condiciones del caso
+*@param caso: Caso que se está evaluando
+*@param lista: Lista que posee las combinaciones que cumplen la condicion del caso
+*@param largo: Cantidad de elementos que contiene "lista"
+*No posee salidas, ya que solo muestra información por pantalla
+*/
 void printCurrent(int caso,Combinacion *lista,int largo){
 	#ifdef DEBUG
 

@@ -1,4 +1,11 @@
 #pragma once
+/*
+ * En este archivo se encuentran las cabeceras de las funciones, las estructuras utilizadas
+   y la declaración de las variables globales que se usan durante el programa
+ * @author: Valentina Ligueño
+ * @version: 31/12/2018
+ */
+
 //Librerías a utilizar
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,10 +19,6 @@ struct Combinacion{
 };
 
 typedef struct Combinacion Combinacion;
-
-//Definición de las variables globales
-int NUMERO_CASOS;
-char *NOMBRE_ARCHIVO;
 
 //Encabezados de las funciones implementadas
 void goloso(char const*,char const*);
