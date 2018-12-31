@@ -1,20 +1,15 @@
 #include "definiciones.h"
-int main(){
-
-	leerArchivosYGuardarDatos();
-	/*recibirNombreArchivo();
-	BENEFICIO_MAX = 0;
-	CAPITAL_UTILIZADO = 0;
-	CAMINO_FINAL = (char*)calloc(50,sizeof(char));
+int main(int argc, char const *argv[]){
+	char const *entrada, *salida;
 	
+	entrada = argv[1];
+	if (fopen(entrada,"r")==NULL)
+	{
+		printf("Ingrese un nombre de archivo de entrada válido\n");
+		exit(1);
+	}
+	salida = argv[2];
 
-	Nodo *raiz = crearNodo(0,0,"");
-
-	//Aquí se realiza la inserción de los nodos
-	for (int i = 0; i < NUMERO_INVERSIONES; ++i)
-		backTracking(raiz,listaDatos[i].inversion,listaDatos[i].beneficio,i);
-
-	escribirArchivo();
-	liberar(raiz);*/
+	goloso(entrada,salida);
 	return 0;
 }

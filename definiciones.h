@@ -18,6 +18,7 @@ int NUMERO_CASOS;
 char *NOMBRE_ARCHIVO;
 
 //Encabezados de las funciones implementadas
-void leerArchivosYGuardarDatos();
+void goloso(char const*,char const*);
 void ordenar_lista(int*,int);
 int remover_elemento(int*,int,int);
+void printCurrent(int,Combinacion*,int);

@@ -1,18 +1,18 @@
 #include "definiciones.h"
 
-void leerArchivosYGuardarDatos()		
+void goloso(char const *entrada,char const *salida)		
 {											
 	FILE *archivo_entrada, *archivo_salida;		
-	int numero_combinaciones,i,numero_barriles,costo_tramo,*lista_barriles,barril1,barril2,indice;
+	int i,numero_barriles,costo_tramo,*lista_barriles,barril1,barril2,indice,caso;
 	char buffer[100],*barril;
 
-	archivo_entrada = fopen("ejemplo2.txt","r");
-	archivo_salida = fopen("salida.txt","w");
+	archivo_entrada = fopen(entrada,"r");
+	archivo_salida = fopen(salida,"w");
 
 	fscanf(archivo_entrada," %119[^\n]",buffer);
 	NUMERO_CASOS = atoi(buffer);
 	fgetc(archivo_entrada);
-
+	caso = 1;
 
 	while (!feof(archivo_entrada))
 	{
@@ -40,11 +40,6 @@ void leerArchivosYGuardarDatos()
    		}
    		
    		ordenar_lista(lista_barriles,numero_barriles);
-   		for (int i = 0; i < numero_barriles; ++i)
-   		{
-   			printf("%i ",lista_barriles[i]);
-   		}
-   		printf("Costo tramo: %i\n",costo_tramo);
 
 		lista_combinaciones = (Combinacion*)calloc(numero_barriles,sizeof(Combinacion));
    		indice = 0;
@@ -55,7 +50,6 @@ void leerArchivosYGuardarDatos()
    			for (int j = 0; j < numero_barriles; ++j)
    			{
    				barril2 = lista_barriles[j];
-   				printf("%i - % i\n",barril1,barril2);
    				if(barril1+barril2>=costo_tramo)
    				{
    					lista_combinaciones[indice].barril1 = barril1;
@@ -65,7 +59,9 @@ void leerArchivosYGuardarDatos()
    					break;
    				}
    			}
+   			i=0;
    		}
+   		printCurrent(caso,lista_combinaciones,indice);
    		fprintf(archivo_salida,"%i\n",indice);
    		for (int i = 0; i < indice; ++i)
    		{
@@ -75,6 +71,7 @@ void leerArchivosYGuardarDatos()
    		fprintf(archivo_salida,"\n---\n");
 
 		fgetc(archivo_entrada);
+		caso++;
 		if (feof(archivo_entrada))
 			break;	
 	}
@@ -103,4 +100,20 @@ int remover_elemento(int* lista,int largo,int indice)
 		
 	}
 	return largo-1;
+}
+
+void printCurrent(int caso,Combinacion *lista,int largo){
+	#ifdef DEBUG
+
+	printf("enter para continuar...\n");
+	while(getchar() != '\n')
+	;
+	printf("Para el caso número %i se obtienen las siguientes combinaciones\n",caso);
+	for (int i = 0; i < largo; ++i)
+	{
+		printf("[%i, %i] ",lista[i].barril1,lista[i].barril2);
+	}
+	printf("\n");
+	
+	#endif
 }
