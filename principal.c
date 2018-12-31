@@ -1,8 +1,8 @@
 #include "definiciones.h"
 int main(){
 
-	recibirNombreArchivo();
 	leerArchivosYGuardarDatos();
+	/*recibirNombreArchivo();
 	BENEFICIO_MAX = 0;
 	CAPITAL_UTILIZADO = 0;
 	CAMINO_FINAL = (char*)calloc(50,sizeof(char));
@@ -15,6 +15,6 @@ int main(){
 		backTracking(raiz,listaDatos[i].inversion,listaDatos[i].beneficio,i);
 
 	escribirArchivo();
-	liberar(raiz);
+	liberar(raiz);*/
 	return 0;
 }
